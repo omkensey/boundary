@@ -37,6 +37,9 @@ service ScopeService {
   rpc ListScopes(ListScopesRequest) returns (ListScopesResponse) {
     option (google.api.http) = {
       get: "/v1/scopes"
+			additional_bindings {
+				get: "/v1/scopes:list"
+			}
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       summary: "Lists all Scopes within the Scope provided in the request."

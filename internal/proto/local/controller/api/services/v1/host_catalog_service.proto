@@ -32,6 +32,9 @@ service HostCatalogService {
   rpc ListHostCatalogs(ListHostCatalogsRequest) returns (ListHostCatalogsResponse) {
     option (google.api.http) = {
       get: "/v1/host-catalogs"
+			additional_bindings {
+				get: "/v1/host-catalogs:list"
+			}
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       summary: "Gets a list of Host Catalogs."

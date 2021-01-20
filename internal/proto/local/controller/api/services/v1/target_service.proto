@@ -32,6 +32,9 @@ service TargetService {
   rpc ListTargets(ListTargetsRequest) returns (ListTargetsResponse) {
     option (google.api.http) = {
       get: "/v1/targets"
+			additional_bindings {
+				get: "/v1/targets:list"
+			}
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       summary: "Lists all Targets."

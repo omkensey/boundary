@@ -220,6 +220,31 @@
         ]
       }
     },
+    "/v1/accounts:list": {
+      "get": {
+        "summary": "Lists all Accounts in a specific Auth Method.",
+        "operationId": "AccountService_ListAccounts2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/controller.api.services.v1.ListAccountsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "auth_method_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "controller.api.services.v1.AccountService"
+        ]
+      }
+    },
     "/v1/auth-methods": {
       "get": {
         "summary": "Lists all Auth Methods.",
@@ -393,6 +418,31 @@
         ]
       }
     },
+    "/v1/auth-methods:list": {
+      "get": {
+        "summary": "Lists all Auth Methods.",
+        "operationId": "AuthMethodService_ListAuthMethods2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/controller.api.services.v1.ListAuthMethodsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "scope_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "controller.api.services.v1.AuthMethodService"
+        ]
+      }
+    },
     "/v1/auth-tokens": {
       "get": {
         "summary": "Lists all Auth Tokens.",
@@ -458,6 +508,31 @@
             "name": "id",
             "in": "path",
             "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "controller.api.services.v1.AuthTokenService"
+        ]
+      }
+    },
+    "/v1/auth-tokens:list": {
+      "get": {
+        "summary": "Lists all Auth Tokens.",
+        "operationId": "AuthTokenService_ListAuthTokens2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/controller.api.services.v1.ListAuthTokensResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "scope_id",
+            "in": "query",
+            "required": false,
             "type": "string"
           }
         ],
@@ -704,6 +779,31 @@
         ]
       }
     },
+    "/v1/groups:list": {
+      "get": {
+        "summary": "Lists all Groups.",
+        "operationId": "GroupService_ListGroups2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/controller.api.services.v1.ListGroupsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "scope_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "controller.api.services.v1.GroupService"
+        ]
+      }
+    },
     "/v1/host-catalogs": {
       "get": {
         "summary": "Gets a list of Host Catalogs.",
@@ -836,6 +936,31 @@
               "type": "string"
             },
             "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "controller.api.services.v1.HostCatalogService"
+        ]
+      }
+    },
+    "/v1/host-catalogs:list": {
+      "get": {
+        "summary": "Gets a list of Host Catalogs.",
+        "operationId": "HostCatalogService_ListHostCatalogs2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/controller.api.services.v1.ListHostCatalogsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "scope_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -1081,6 +1206,31 @@
         ]
       }
     },
+    "/v1/host-sets:list": {
+      "get": {
+        "summary": "List all Host Sets under the specific Catalog.",
+        "operationId": "HostSetService_ListHostSets2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/controller.api.services.v1.ListHostSetsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "host_catalog_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "controller.api.services.v1.HostSetService"
+        ]
+      }
+    },
     "/v1/hosts": {
       "get": {
         "summary": "List all Hosts for the specified Catalog.",
@@ -1213,6 +1363,31 @@
               "type": "string"
             },
             "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "controller.api.services.v1.HostService"
+        ]
+      }
+    },
+    "/v1/hosts:list": {
+      "get": {
+        "summary": "List all Hosts for the specified Catalog.",
+        "operationId": "HostService_ListHosts2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/controller.api.services.v1.ListHostsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "host_catalog_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -1557,6 +1732,31 @@
         ]
       }
     },
+    "/v1/roles:list": {
+      "get": {
+        "summary": "Lists all Roles.",
+        "operationId": "RoleService_ListRoles2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/controller.api.services.v1.ListRolesResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "scope_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "controller.api.services.v1.RoleService"
+        ]
+      }
+    },
     "/v1/scopes": {
       "get": {
         "summary": "Lists all Scopes within the Scope provided in the request.",
@@ -1708,6 +1908,31 @@
         ]
       }
     },
+    "/v1/scopes:list": {
+      "get": {
+        "summary": "Lists all Scopes within the Scope provided in the request.",
+        "operationId": "ScopeService_ListScopes2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/controller.api.services.v1.ListScopesResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "scope_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "controller.api.services.v1.ScopeService"
+        ]
+      }
+    },
     "/v1/sessions": {
       "get": {
         "summary": "Lists all Sessions.",
@@ -1784,6 +2009,56 @@
             "schema": {
               "$ref": "#/definitions/controller.api.services.v1.CancelSessionRequest"
             }
+          }
+        ],
+        "tags": [
+          "controller.api.services.v1.SessionService"
+        ]
+      }
+    },
+    "/v1/sessions:list": {
+      "get": {
+        "summary": "Lists all Sessions.",
+        "operationId": "SessionService_ListSessions2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/controller.api.services.v1.ListSessionsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "scope_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "controller.api.services.v1.SessionService"
+        ]
+      }
+    },
+    "/v1/sessions:list:self": {
+      "get": {
+        "summary": "Lists all Sessions owned by the requester.",
+        "operationId": "SessionService_ListSelfSessions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/controller.api.services.v1.ListSelfSessionsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "scope_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -2063,6 +2338,31 @@
         ]
       }
     },
+    "/v1/targets:list": {
+      "get": {
+        "summary": "Lists all Targets.",
+        "operationId": "TargetService_ListTargets2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/controller.api.services.v1.ListTargetsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "scope_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "controller.api.services.v1.TargetService"
+        ]
+      }
+    },
     "/v1/users": {
       "get": {
         "summary": "Lists all Users.",
@@ -2294,6 +2594,31 @@
             "schema": {
               "$ref": "#/definitions/controller.api.services.v1.SetUserAccountsRequest"
             }
+          }
+        ],
+        "tags": [
+          "controller.api.services.v1.UserService"
+        ]
+      }
+    },
+    "/v1/users:list": {
+      "get": {
+        "summary": "Lists all Users.",
+        "operationId": "UserService_ListUsers2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/controller.api.services.v1.ListUsersResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "scope_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -4048,6 +4373,17 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/controller.api.resources.scopes.v1.Scope"
+          }
+        }
+      }
+    },
+    "controller.api.services.v1.ListSelfSessionsResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/controller.api.resources.sessions.v1.Session"
           }
         }
       }

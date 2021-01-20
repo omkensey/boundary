@@ -32,6 +32,9 @@ service GroupService {
   rpc ListGroups(ListGroupsRequest) returns (ListGroupsResponse) {
     option (google.api.http) = {
       get: "/v1/groups"
+			additional_bindings {
+				get: "/v1/groups:list"
+			}
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       summary: "Lists all Groups."

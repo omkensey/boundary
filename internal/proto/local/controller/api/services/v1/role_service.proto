@@ -32,6 +32,9 @@ service RoleService {
   rpc ListRoles(ListRolesRequest) returns (ListRolesResponse) {
     option (google.api.http) = {
       get: "/v1/roles"
+			additional_bindings {
+				get: "/v1/roles:list"
+			}
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       summary: "Lists all Roles."

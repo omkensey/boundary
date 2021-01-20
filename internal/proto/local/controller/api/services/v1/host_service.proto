@@ -31,6 +31,9 @@ service HostService {
   rpc ListHosts(ListHostsRequest) returns (ListHostsResponse) {
     option (google.api.http) = {
       get: "/v1/hosts"
+			additional_bindings {
+				get: "/v1/hosts:list"
+			}
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       summary: "List all Hosts for the specified Catalog."

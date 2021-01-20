@@ -30,6 +30,9 @@ service AuthTokenService {
   rpc ListAuthTokens(ListAuthTokensRequest) returns (ListAuthTokensResponse) {
     option (google.api.http) = {
       get: "/v1/auth-tokens"
+			additional_bindings {
+				get: "/v1/auth-tokens:list"
+			}
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       summary: "Lists all Auth Tokens."

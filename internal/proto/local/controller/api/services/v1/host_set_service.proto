@@ -29,6 +29,9 @@ service HostSetService {
   rpc ListHostSets(ListHostSetsRequest) returns (ListHostSetsResponse) {
     option (google.api.http) = {
       get: "/v1/host-sets"
+			additional_bindings {
+				get: "/v1/host-sets:list"
+			}
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       summary: "List all Host Sets under the specific Catalog."

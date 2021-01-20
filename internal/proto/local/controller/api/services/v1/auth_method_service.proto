@@ -31,6 +31,9 @@ service AuthMethodService {
   rpc ListAuthMethods(ListAuthMethodsRequest) returns (ListAuthMethodsResponse) {
     option (google.api.http) = {
       get: "/v1/auth-methods"
+			additional_bindings {
+				get: "/v1/auth-methods:list"
+			}
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       summary: "Lists all Auth Methods."
