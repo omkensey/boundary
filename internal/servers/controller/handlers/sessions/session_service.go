@@ -101,6 +101,33 @@ func (s Service) ListSessions(ctx context.Context, req *pbs.ListSessionsRequest)
 	return &pbs.ListSessionsResponse{Items: finalItems}, nil
 }
 
+func (s Service) ListSelfSessions(ctx context.Context, req *pbs.ListSelfSessionsRequest) (*pbs.ListSelfSessionsResponse, error) {
+	if err := validateListSelfRequest(req); err != nil {
+		return nil, err
+	}
+	authResults := s.authResult(ctx, req.GetScopeId(), action.ListSelf)
+	if authResults.Error != nil {
+		return nil, authResults.Error
+	}
+	seslist, err := s.listSelfFromRepo(ctx, authResults.UserId)
+	if err != nil {
+		return nil, err
+	}
+	finalItems := make([]*pb.Session, 0, len(seslist))
+	res := &perms.Resource{
+		ScopeId: authResults.Scope.Id,
+		Type:    resource.Session,
+	}
+	for _, item := range seslist {
+		item.Scope = authResults.Scope
+		item.AuthorizedActions = authResults.FetchActionSetForId(ctx, item.Id, IdActions, auth.WithResource(res)).Strings()
+		if len(item.AuthorizedActions) > 0 {
+			finalItems = append(finalItems, item)
+		}
+	}
+	return &pbs.ListSelfSessionsResponse{Items: finalItems}, nil
+}
+
 // CancelSession implements the interface pbs.SessionServiceServer.
 func (s Service) CancelSession(ctx context.Context, req *pbs.CancelSessionRequest) (*pbs.CancelSessionResponse, error) {
 	if err := validateCancelRequest(req); err != nil {
@@ -153,6 +180,22 @@ func (s Service) listFromRepo(ctx context.Context, scopeId string) ([]*pb.Sessio
 	return outSl, nil
 }
 
+func (s Service) listSelfFromRepo(ctx context.Context, userId string) ([]*pb.Session, error) {
+	repo, err := s.repoFn()
+	if err != nil {
+		return nil, err
+	}
+	seslist, err := repo.ListSessions(ctx, session.WithUserId(userId))
+	if err != nil {
+		return nil, err
+	}
+	var outSl []*pb.Session
+	for _, ses := range seslist {
+		outSl = append(outSl, toProto(ses))
+	}
+	return outSl, nil
+}
+
 func (s Service) cancelInRepo(ctx context.Context, id string, version uint32) (*pb.Session, error) {
 	repo, err := s.repoFn()
 	if err != nil {
@@ -187,6 +230,8 @@ func (s Service) authResult(ctx context.Context, id string, a action.Type) auth.
 			res.Error = handlers.NotFoundError()
 			return res
 		}
+	case action.ListSelf:
+		// TODO: DO NOT SUBMIT until this is populated
 	case action.Read, action.Cancel:
 		repo, err := s.repoFn()
 		if err != nil {
@@ -267,6 +312,10 @@ func validateListRequest(req *pbs.ListSessionsRequest) error {
 	if len(badFields) > 0 {
 		return handlers.InvalidArgumentErrorf("Improperly formatted identifier.", badFields)
 	}
+	return nil
+}
+
+func validateListSelfRequest(*pbs.ListSelfSessionsRequest) error {
 	return nil
 }
 

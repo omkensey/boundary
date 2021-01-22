@@ -37,6 +37,7 @@ const (
 	AddAccounts      Type = 28
 	SetAccounts      Type = 29
 	RemoveAccounts   Type = 30
+	ListSelf Type = 31
 )
 
 var Map = map[string]Type{
@@ -70,6 +71,7 @@ var Map = map[string]Type{
 	AddAccounts.String():      AddAccounts,
 	SetAccounts.String():      SetAccounts,
 	RemoveAccounts.String():   RemoveAccounts,
+	ListSelf.String(): ListSelf,
 }
 
 func (a Type) String() string {
@@ -105,6 +107,7 @@ func (a Type) String() string {
 		"add-accounts",
 		"set-accounts",
 		"remove-accounts",
+		"list:self",
 	}[a]
 }
 

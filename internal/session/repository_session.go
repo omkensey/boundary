@@ -163,7 +163,7 @@ func (r *Repository) LookupSession(ctx context.Context, sessionId string, opt ..
 	return &session, authzSummary, nil
 }
 
-// ListSessions will sessions.  Supports the WithLimit, WithScopeId and WithSessionIds options.
+// ListSessions will sessions.  Supports the WithLimit, WithScopeId, WithUserId, and WithSessionIds options.
 func (r *Repository) ListSessions(ctx context.Context, opt ...Option) ([]*Session, error) {
 	opts := getOpts(opt...)
 	var where []string
