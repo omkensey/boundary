@@ -11,6 +11,22 @@ import (
 	"github.com/mitchellh/go-wordwrap"
 )
 
+type extraCmdVars = struct {
+	flagHostSets []string
+	flagHostId   string
+}
+
+func (c *Command) extraSynopsisFunc() string {
+	switch c.Func {
+	case "add-host-sets", "set-host-sets", "remove-host-sets":
+		return hostSetSynopsisFunc(c.Func)
+	case "authorize-session":
+		return "Request session authorization against the target"
+	default:
+		return ""
+	}
+}
+
 func hostSetSynopsisFunc(inFunc string) string {
 	var in string
 	switch {
